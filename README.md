@@ -128,3 +128,52 @@ int main() {
     return 0;
 }
 ```
+STL Vector
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void init(struct Vector *vec);
+void puch(struct Vector *vec, int num);
+void pop(struct Vector *vec);
+void resize(struct Vector *vec, size_t new_count);
+
+struct Vector{
+    int *data;
+    size_t size;
+    size_t count;
+};
+
+int main(){
+    
+    return 0;
+}
+
+
+void init(struct Vector *vec){
+    vec->size=0;
+    vec->count= 4;
+    vec-> data =(int *)malloc(vec->count * sizeof(int));
+}
+
+void resize(struct Vector *vec, size_t new_count) {
+    vec->count = new_count;
+    vec->data = (int *)realloc(vec->data, vec->count* sizeof(int));
+}
+
+void puch(struct Vector *vec, int num){
+    if (vec->size >= vec->count) {
+        resize(vec, vec->count * 2);
+    }
+    vec->data[vec->size++] = num;
+}
+
+void pop(struct Vector *vec) {
+    if (vec->size > 0) {
+        vec->size--;
+    } else {
+        printf("Vector is empty\n");
+    }
+}
+```
